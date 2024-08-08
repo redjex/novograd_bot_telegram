@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 
-token='7367052869:AAHKSlUOKztAQX3PTf-94RKyRJo0LW48ggQ'
+token='Token'
 bot=telebot.TeleBot(token)
 
 Answers = "Мой разработчик не говорил что мне делать в таких ситуациях"
