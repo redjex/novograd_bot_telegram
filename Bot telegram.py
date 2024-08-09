@@ -1,12 +1,12 @@
 import telebot
 from telebot import types
-
+import random
 # Замените 'YOUR_BOT_TOKEN' на токен вашего бота
-bot_token = '6843771352:AAG7zXjfRK68nlnQbs89D_2Xx13EBqbd_Vk'
+bot_token = 'TOKEN'
 bot = telebot.TeleBot(bot_token)
 
 
-Answers = "Мой разработчик не говорил что мне делать в таких ситуациях"
+Answers = ["Мой разработчик не говорил что мне делать в таких ситуациях", "Я не знаю ответа", "Буду тактически молчать...", "Думаешь я знаю что это?"]
 
 Damate = 9
 Sber = 3
@@ -15,13 +15,15 @@ MedIng = 5
 MIFI = 11
 GEO = 7
 
+path_list = ['1.jpg', '123.jpg']
 
 @bot.message_handler(commands=['start'])
 def send_photo_or_sticker(message):
+    print("Бот запущен")
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     item1 = types.KeyboardButton("Попробывать🟥")
     markup.add(item1)
-    bot.send_message(message.chat.id, 'Привет, теперь выбери свое положение в лагере.\n Мерия👨‍⚖️ \n Воспитаники🏄‍♂️', reply_markup=markup)
+    bot.send_message(message.chat.id, "Привет, {0.first_name}! Нажми на кнопку и перейди в меню :)".format(message.from_user), reply_markup=markup)
 
 @bot.message_handler(content_types=['text'])
 def message_reply(message):
@@ -68,14 +70,13 @@ def message_reply(message):
     elif message.text == "Геоскан🟨":
         bot.send_message(message.chat.id, f"Геоскан: {GEO}")
     elif message.text == "Важная информация💣":
-        photo_path = '1.jpg'  # Укажите путь к вашей фотографии
+        photo_path = random.choice(path_list)
         with open(photo_path, 'rb') as photo:
             bot.send_photo(message.chat.id, photo)
-        bot.send_message(message.chat.id, "Вот твои мемы:")
+        bot.send_message(message.chat.id, "Вот твои мемы:\n\nP.s Они появляются рамдомно, можешь нажимать и каждый раз будут разные.")
     else:
-        bot.send_message(message.chat.id, Answers)
+        bot.send_message(message.chat.id, random.choice(Answers))
 
 
 if __name__ == '__main__':
     bot.infinity_polling()
-    
