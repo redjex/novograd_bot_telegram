@@ -18,7 +18,7 @@ import random
 
 
 # Замените 'YOUR_BOT_TOKEN' на токен вашего бота
-bot_token = 'TOKEN'
+bot_token = '6843771352:AAG7zXjfRK68nlnQbs89D_2Xx13EBqbd_Vk'
 bot = telebot.TeleBot(bot_token)
 
 
@@ -92,10 +92,16 @@ def message_reply(message):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Психоподдержка👌")
         item2 = types.KeyboardButton("Описание кейсов🏄‍♂️")
+        item4 = types.KeyboardButton("Фото")
+        item5 = types.KeyboardButton("Новоград ТВ")
+        item6 = types.KeyboardButton("Гимн Новограда")
         item3 = types.KeyboardButton("Назад🔙")
         markup.add(item1, item2)
+        markup.add(item4,item5)
+        markup.add(item6)
         markup.add(item3)
         bot.send_message(message.chat.id, "Выбери раздел:", reply_markup=markup)
+
     elif message.text == "Психоподдержка👌":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item3 = types.KeyboardButton("Назад🔙")
@@ -115,9 +121,29 @@ def message_reply(message):
         markup.add(item5, item6)
         markup.add(item7)
         bot.send_message(message.chat.id, "📈", reply_markup=markup)
+    elif message.text == "Фото":
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        item7 = types.KeyboardButton("Назад🔙")
+        markup.add(item7)
+        bot.send_message(message.chat.id, "Фото из Новограда-2024 по дням вы можете найти в этих альбомах:", reply_markup=markup)
+        bot.send_message(message.chat.id, "День 1: https://vk.com/album-55502126_305226288\n\nДень 2: https://vk.com/album-55502126_305235708\n\nДень 3: https://vk.com/album-55502126_305244418\n\nДень 4: https://vk.com/album-55502126_305256389\n\nДень 5: https://vk.com/album-55502126_305265959\n\nДень 6: https://vk.com/album-55502126_305291288\n\nДень 7: https://vk.com/album-55502126_305297171\n\nДень 8: https://vk.com/album-55502126_305310909\n\nДень 9: https://vk.com/album-55502126_305315645\n\nДень 10: https://vk.com/album-55502126_305315646")
 
-
+    elif message.text == "Новоград ТВ":
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        item7 = types.KeyboardButton("Назад🔙")
+        markup.add(item7)
+        bot.send_message(message.chat.id, "Все выпуски нашей любимой новостной передачи в этом плейлисте:")
+        bot.send_message(message.chat.id, "https://vk.com/video/@novograd2024/playlists?z=video-55502126_456239170%2Fclub55502126%2Fpl_-55502126_54058391")
     # Кейсы
+    elif message.text == "Гимн Новограда":
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        item7 = types.KeyboardButton("Назад🔙")
+        markup.add(item7)
+        bot.send_message(message.chat.id, "Опа, а вот и ваш любимый гимн")
+        audio = open(r'123.mp3', 'rb')
+        bot.send_audio(message.chat.id, audio)
+        audio.close()
+
 
     elif message.text == "Дамате🟠":
         bot.send_message(message.chat.id, "Дамате:")
