@@ -59,9 +59,11 @@ def message_reply(message):
         item4 = types.KeyboardButton("Тест на знание Новограда")
         item5 = types.KeyboardButton("Код📑")
         item7 = types.KeyboardButton("О Новограде")
+        item8 = types.KeyboardButton("Пожертвование💸")
         markup.add(item1, item2)
         markup.add(item3, item4)
         markup.add(item5, item7)
+        markup.add(item8)
         bot.send_message(message.chat.id, "Теперь выбери раздел📑", reply_markup=markup)
     elif message.text == "Назад🔙":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -71,17 +73,23 @@ def message_reply(message):
         item4 = types.KeyboardButton("Тест на знание Новограда")
         item5 = types.KeyboardButton("Код📑")
         item7 = types.KeyboardButton("О Новограде")
+        item8 = types.KeyboardButton("Пожертвование💸")
         markup.add(item1, item2)
         markup.add(item3, item4)
         markup.add(item5, item7)
+        markup.add(item8)
         bot.send_message(message.chat.id, "Ты заходи если что😉", reply_markup=markup)
 
     elif message.text == "О Новограде":
         photo_path = '5310089791892741146.jpg'  # Укажите путь к вашей фотографии
         with open(photo_path, 'rb') as photo:
             bot.send_photo(message.chat.id, photo)
-        bot.send_message(message.chat.id, "https://telegra.ph/CHto-takoe-Novograd-08-09 ")
-
+        bot.send_message(message.chat.id, "https://telegra.ph/Memy-Novograda-2024-08-10-2")
+    elif message.text == "Пожертвование💸":
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        item1 = types.KeyboardButton("Назад🔙")
+        markup.add(item1)
+        bot.send_message(message.chat.id, "Солнышко, если ты правда хочешь отправить мне денюшку то\n\nНапиши банкиру что ты готов предать пожертвование\nНа номер 131. За ранее спасибо. \n\nhttps://t.me/:@Nata_Polunovskaya",reply_markup=markup)
     elif message.text == "Учебка📑":
         photo_path = '5310089791892741150.jpg'  # Укажите путь к вашей фотографии
         with open(photo_path, 'rb') as photo:
@@ -109,11 +117,13 @@ def message_reply(message):
         item3 = types.KeyboardButton("Назад🔙")
         markup.add(item3)
         bot.send_message(message.chat.id, "Мастерская психология подготовила четыре материала, которые могут быть вам полезны в повседневной жизни. Приятного чтения!\n\n 1. Как преодолеть тревожность: https://telegra.ph/Kak-preodolet-trevozhnost-08-09 \n\n2. Как влиться в новый коллектив: https://telegra.ph/Kak-vlitsya-v-novyj-kollektiv-08-09 \n\n3. Как бороться с самокритичными мыслями: https://telegra.ph/Kak-borotsya-s-samokritichnymi-myslyami-08-09 \n\n4. Как определить, что в семье происходит насилие: https://telegra.ph/Kak-opredelit-chto-v-seme-proishodit-nasilie-08-09", reply_markup=markup)
+
     elif message.text == "Стикеры":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item3 = types.KeyboardButton("Назад🔙")
         markup.add(item3)
         bot.send_message(message.chat.id, "Мастерская стикеров сделала крутой пак! Скорее добавляй его себе:", reply_markup=markup)
+        bot.send_message(message.chat.id, "https://t.me/addstickers/Novograd2024")
     elif message.text == "Описание кейсов🏄‍♂️":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Дамате🟠")
@@ -149,7 +159,7 @@ def message_reply(message):
         markup.add(item7)
         bot.send_message(message.chat.id, "Опа, а вот и ваш любимый гимн", reply_markup=markup)
         bot.send_message(message.chat.id, "https://drive.google.com/file/d/1L5955yw8Gg92IK1COfHLeIW9w1XI2IIW/view?usp=drive_link")
-        print("Nice as")
+        print("Nice")
 
 
     elif message.text == "Дамате🟠":
@@ -207,6 +217,11 @@ def message_reply(message):
         markup.add(item5, item6)
         markup.add(item7)
         bot.send_message(message.chat.id, "Хоп, а вот и акции компании📈", reply_markup=markup)
+    elif message.text == "Получить что? Ничего":
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        item1 = types.KeyboardButton("Назад🔙")
+        markup.add(item1)
+        bot.send_message(message.chat.id, "Потому что Новокотиков у компании нет, лучше нам переведите мне. \n\nId карты 131.", reply_markup=markup)
     elif message.text == "Код📑":
         photo_path = '5310089791892741152.jpg'  # Укажите путь к вашей фотографии
         with open(photo_path, 'rb') as photo:
@@ -227,8 +242,10 @@ def message_reply(message):
     elif message.text == "Мемная😂":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Пояснения😎")
+        item3 = types.KeyboardButton("Мемная😂")
         item2 = types.KeyboardButton("Назад🔙")
-        markup.add(item1, item2)
+        markup.add(item1, item3)
+        markup.add(item2)
         photo_path = random.choice(path_list)
         with open(photo_path, 'rb') as photo:
             bot.send_photo(message.chat.id, photo)
@@ -295,7 +312,7 @@ def message_reply(message):
     elif message.text == "Новокотики":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Андрей Тяглый")
-        item2 = types.KeyboardButton("Антон Алексеев ")
+        item2 = types.KeyboardButton("Антон Алексеев")
         item3 = types.KeyboardButton("Игорь Семенов")
         item4 = types.KeyboardButton("Влад Рябиков")
         item5 = types.KeyboardButton("Назад🔙")
@@ -306,7 +323,7 @@ def message_reply(message):
     elif message.text == "Антон Алексеев":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Сбер")
-        item2 = types.KeyboardButton("МедИнж ")
+        item2 = types.KeyboardButton("МедИнж")
         item3 = types.KeyboardButton("Геоскан")
         item4 = types.KeyboardButton("Space Pi")
         item5 = types.KeyboardButton("Дамате")
@@ -372,9 +389,9 @@ def message_reply(message):
         markup.add(item3, item4)
         markup.add(item5)
         bot.send_message(message.chat.id, "Кто обычно ведёт вечерние события Новограда?", reply_markup=markup)
-    elif message.text == "Андрей Штанюк ":
+    elif message.text == "Андрей Штанюк":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        item1 = types.KeyboardButton("Продолжить? ")
+        item1 = types.KeyboardButton("Продолжить?")
         item5 = types.KeyboardButton("Назад🔙")
         markup.add(item5, item1)
         bot.send_message(message.chat.id, "Поздравляю тебя!\n От нашей команды, ты прошел 1 этап\n Надеемся что ты отгадаешь все остальные ответы!", reply_markup=markup)
@@ -482,7 +499,7 @@ def message_reply(message):
         bot.send_message(message.chat.id, "История Новограда и Нанограда тебе точно знакома. Но истинный ли ты новокот? Давай проверим, сможешь ли ты пройти самый сложный тест")
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Антон Алексеев")
-        item2 = types.KeyboardButton("Михаил Эпштейн ")
+        item2 = types.KeyboardButton("Михаил Эпштейн")
         item3 = types.KeyboardButton("Антатолий Шперх")
         item4 = types.KeyboardButton("Елена Казакова")
         item5 = types.KeyboardButton("Назад🔙")
@@ -490,7 +507,7 @@ def message_reply(message):
         markup.add(item3, item4)
         markup.add(item5)
         bot.send_message(message.chat.id, "Кто был первым мэром Нанограда?", reply_markup=markup)
-    elif message.text == "Михаил Эпштейн ":
+    elif message.text == "Михаил Эпштейн":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("23")
         item2 = types.KeyboardButton("30")
@@ -555,7 +572,7 @@ def message_reply(message):
         markup.add(item1, item2)
         markup.add(item3, item4)
         markup.add(item5)
-        bot.send_message(message.chat.id, "Как назывался стартап, который лежал в основе бизнес игры «Построй компанию. Продай компанию»",reply_markup=markup)
+        bot.send_message(message.chat.id, "Какая компания не вступила в войну мемов Новограда-2024?",reply_markup=markup)
     elif message.text == "НИЯУ МИФИ":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Получить что? Ничего")
@@ -571,8 +588,9 @@ def message_reply(message):
 
         if message.text == "Москва":
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True) # 1
+            item1 = types.KeyboardButton("Пояснение😎")
             item3 = types.KeyboardButton("Назад🔙")
-            markup.add(item3)
+            markup.add(item1,item3)
             bot.send_message(message.chat.id, "Попробовать еще раз🍕", reply_markup=markup)
         elif message.text == "Калининград":
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True) # 1.1
