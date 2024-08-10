@@ -33,7 +33,7 @@ MedIng = 6
 MIFI = 11
 GEO = 7
 
-path_list = ['2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.jpg' , '10.jpg']
+path_list = ['2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.jpg' , '10.jpg', '11.jpg', '12.jpg']
 
 
 @bot.message_handler(commands=['start'])
@@ -47,6 +47,8 @@ def send_photo_or_sticker(message):
         bot.send_photo(message.chat.id, photo)
     bot.send_message(message.chat.id, "Привет Новоградец, {0.first_name}!".format(message.from_user), reply_markup=markup)
     bot.send_message(message.chat.id, "Отвлекись от всех мыслей и посети каждый раздел бота Новограда :)")
+
+
 @bot.message_handler(content_types=['text'])
 def message_reply(message):
     if message.text == "Попробовать🟥":
@@ -56,12 +58,10 @@ def message_reply(message):
         item3 = types.KeyboardButton("Учебка📑")
         item4 = types.KeyboardButton("Тест на знание Новограда")
         item5 = types.KeyboardButton("Код📑")
-        item6 = types.KeyboardButton("Назад🔙")
         item7 = types.KeyboardButton("О Новограде")
         markup.add(item1, item2)
         markup.add(item3, item4)
         markup.add(item5, item7)
-        markup.add(item6)
         bot.send_message(message.chat.id, "Теперь выбери раздел📑", reply_markup=markup)
     elif message.text == "Назад🔙":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -70,12 +70,10 @@ def message_reply(message):
         item3 = types.KeyboardButton("Учебка📑")
         item4 = types.KeyboardButton("Тест на знание Новограда")
         item5 = types.KeyboardButton("Код📑")
-        item6 = types.KeyboardButton("Назад🔙")
         item7 = types.KeyboardButton("О Новограде")
         markup.add(item1, item2)
         markup.add(item3, item4)
         markup.add(item5, item7)
-        markup.add(item6)
         bot.send_message(message.chat.id, "Ты заходи если что😉", reply_markup=markup)
 
     elif message.text == "О Новограде":
@@ -91,21 +89,31 @@ def message_reply(message):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Психоподдержка👌")
         item2 = types.KeyboardButton("Описание кейсов🏄‍♂️")
-        item4 = types.KeyboardButton("Фото")
-        item5 = types.KeyboardButton("Новоград ТВ")
-        item6 = types.KeyboardButton("Гимн Новограда")
-        item3 = types.KeyboardButton("Назад🔙")
+        item3 = types.KeyboardButton("Архив")
         markup.add(item1, item2)
-        markup.add(item4,item5)
-        markup.add(item6)
         markup.add(item3)
         bot.send_message(message.chat.id, "Выбери раздел:", reply_markup=markup)
-
+    elif message.text == "Архив":
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        item1 = types.KeyboardButton("Фото")
+        item2 = types.KeyboardButton("Новоград ТВ")
+        item3 = types.KeyboardButton("Гимн Новограда")
+        item4 = types.KeyboardButton("Стикеры")
+        item5 = types.KeyboardButton("Назад🔙")
+        markup.add(item1, item2)
+        markup.add(item3, item4)
+        markup.add(item5)
+        bot.send_message(message.chat.id, "Выбери раздел:", reply_markup=markup)
     elif message.text == "Психоподдержка👌":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item3 = types.KeyboardButton("Назад🔙")
         markup.add(item3)
         bot.send_message(message.chat.id, "Мастерская психология подготовила четыре материала, которые могут быть вам полезны в повседневной жизни. Приятного чтения!\n\n 1. Как преодолеть тревожность: https://telegra.ph/Kak-preodolet-trevozhnost-08-09 \n\n2. Как влиться в новый коллектив: https://telegra.ph/Kak-vlitsya-v-novyj-kollektiv-08-09 \n\n3. Как бороться с самокритичными мыслями: https://telegra.ph/Kak-borotsya-s-samokritichnymi-myslyami-08-09 \n\n4. Как определить, что в семье происходит насилие: https://telegra.ph/Kak-opredelit-chto-v-seme-proishodit-nasilie-08-09", reply_markup=markup)
+    elif message.text == "Стикеры":
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        item3 = types.KeyboardButton("Назад🔙")
+        markup.add(item3)
+        bot.send_message(message.chat.id, "Мастерская стикеров сделала крутой пак! Скорее добавляй его себе:", reply_markup=markup)
     elif message.text == "Описание кейсов🏄‍♂️":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Дамате🟠")
@@ -217,10 +225,16 @@ def message_reply(message):
     elif message.text == "Геоскан🟨":
         bot.send_message(message.chat.id, f"Геоскан: {GEO}")
     elif message.text == "Мемная😂":
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        item1 = types.KeyboardButton("Пояснения😎")
+        item2 = types.KeyboardButton("Назад🔙")
+        markup.add(item1, item2)
         photo_path = random.choice(path_list)
         with open(photo_path, 'rb') as photo:
             bot.send_photo(message.chat.id, photo)
-        bot.send_message(message.chat.id, "Лови мем) \n\nP.s. жми сколько хочешь, они будут появляться бесконечно (ну, относительно). ")
+        bot.send_message(message.chat.id, "Лови мем! \n\nЖми на кнопку «мемная», сколько хочешь. Мемы будут появляться бесконечно (ну почти).", reply_markup=markup)
+    elif message.text == "Пояснения😎":
+        bot.send_message(message.chat.id, "https://telegra.ph/Memy-Novograda-2024-08-10")
     elif message.text == "Попробовать еще раз🍕":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Москва")
@@ -281,7 +295,7 @@ def message_reply(message):
     elif message.text == "Новокотики":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Андрей Тяглый")
-        item2 = types.KeyboardButton("Антон Алексеев")
+        item2 = types.KeyboardButton("Антон Алексеев ")
         item3 = types.KeyboardButton("Игорь Семенов")
         item4 = types.KeyboardButton("Влад Рябиков")
         item5 = types.KeyboardButton("Назад🔙")
@@ -292,7 +306,7 @@ def message_reply(message):
     elif message.text == "Антон Алексеев":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Сбер")
-        item2 = types.KeyboardButton("МедИнж")
+        item2 = types.KeyboardButton("МедИнж ")
         item3 = types.KeyboardButton("Геоскан")
         item4 = types.KeyboardButton("Space Pi")
         item5 = types.KeyboardButton("Дамате")
@@ -358,9 +372,9 @@ def message_reply(message):
         markup.add(item3, item4)
         markup.add(item5)
         bot.send_message(message.chat.id, "Кто обычно ведёт вечерние события Новограда?", reply_markup=markup)
-    elif message.text == "Андрей Штанюк":
+    elif message.text == "Андрей Штанюк ":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        item1 = types.KeyboardButton("Продолжить?")
+        item1 = types.KeyboardButton("Продолжить? ")
         item5 = types.KeyboardButton("Назад🔙")
         markup.add(item5, item1)
         bot.send_message(message.chat.id, "Поздравляю тебя!\n От нашей команды, ты прошел 1 этап\n Надеемся что ты отгадаешь все остальные ответы!", reply_markup=markup)
@@ -468,7 +482,7 @@ def message_reply(message):
         bot.send_message(message.chat.id, "История Новограда и Нанограда тебе точно знакома. Но истинный ли ты новокот? Давай проверим, сможешь ли ты пройти самый сложный тест")
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Антон Алексеев")
-        item2 = types.KeyboardButton("Михаил Эпштейн")
+        item2 = types.KeyboardButton("Михаил Эпштейн ")
         item3 = types.KeyboardButton("Антатолий Шперх")
         item4 = types.KeyboardButton("Елена Казакова")
         item5 = types.KeyboardButton("Назад🔙")
@@ -476,7 +490,7 @@ def message_reply(message):
         markup.add(item3, item4)
         markup.add(item5)
         bot.send_message(message.chat.id, "Кто был первым мэром Нанограда?", reply_markup=markup)
-    elif message.text == "Михаил Эпштейн":
+    elif message.text == "Михаил Эпштейн ":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("23")
         item2 = types.KeyboardButton("30")
